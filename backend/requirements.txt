@@ -1,0 +1,6 @@
+flask
+flask-cors
+psycopg2-binary
+llama-cloud-services
+pydantic
+python-dotenv

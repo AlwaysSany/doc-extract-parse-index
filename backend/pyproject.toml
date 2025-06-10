@@ -1,0 +1,14 @@
+[project]
+name = "doc-extract-parse-index"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13.3"
+dependencies = [
+    "flask>=3.1.1",
+    "flask-cors>=6.0.0",
+    "llama-cloud-services>=0.6.30",
+    "psycopg2-binary>=2.9.10",
+    "pydantic>=2.11.5",
+    "python-dotenv>=1.1.0",
+]
