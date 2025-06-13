@@ -23,10 +23,12 @@
 ## Project Requirements
 
 - Python 3.13.3+
-- Node.js 14+ (if frontend is present)
-- pip (Python package manager)
+- Node.js 18+ (if frontend is present)
+- UV/PIP (Python package manager)
 - Docker (for containerized setup)
 - Docker Compose (for multi-service orchestration)
+- PostgreSQL (for database management)
+- LlamaCloud (for document indexing and search capabilities)
 
 ## Dependencies
 
