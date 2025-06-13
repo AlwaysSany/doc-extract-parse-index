@@ -2,6 +2,10 @@
 
 `doc-extract-parse-index` is designed to streamline the workflow of extracting, parsing, and indexing documents via a web interface. It supports various document formats and provides an easy-to-use API and UI for managing document data.
 
+## Demo 
+
+https://github.com/user-attachments/assets/5a5a01e9-9d25-4bca-a827-3e488f33112c
+
 ## Table of Contents
 
 - [doc-extract-parse-index](#doc-extract-parse-index)
