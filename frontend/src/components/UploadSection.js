@@ -6,9 +6,8 @@ import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 function UploadSection({ API_BASE, showNotification, onUploadSuccess }) {
     const [selectedFiles, setSelectedFiles] = useState([]);
-    const [uploadResults, setUploadResults] = useState([]);
-    const [uploading, setUploading] = useState(false);
     const [uploadProgress, setUploadProgress] = useState(0);
+    const [isUploading, setIsUploading] = useState(false);
 
     const handleFileChange = (e) => {
         setSelectedFiles(e.target.files);
@@ -20,9 +19,8 @@ function UploadSection({ API_BASE, showNotification, onUploadSuccess }) {
             showNotification('Please select at least one file to upload.', 'info');
             return;
         }
-        setUploading(true);
+        setIsUploading(true);
         setUploadProgress(0);
-        setUploadResults([]);
 
         const formData = new FormData();
         for (let file of selectedFiles) {
@@ -38,39 +36,30 @@ function UploadSection({ API_BASE, showNotification, onUploadSuccess }) {
             }
         });
 
-        xhr.addEventListener('load', () => {
-            setUploading(false);
-            setUploadProgress(0); // Reset progress bar
-            const contentType = xhr.getResponseHeader('content-type');
-            if (contentType && contentType.includes('application/json')) {
-                const data = JSON.parse(xhr.responseText);
-                setUploadResults(data.results || []);
-                const successCount = data.results.filter(r => r.status === 'success').length;
-                if (successCount > 0) {
-                    showNotification(`${successCount} document(s) uploaded successfully!`, 'success');
-                    if (onUploadSuccess) {
-                        onUploadSuccess();
-                    }
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                setIsUploading(false);
+                if (xhr.status === 200) {
+                    console.log('Upload successful:', xhr.responseText);
+                    showNotification('File uploaded successfully!', 'success');
+                    onUploadSuccess();
+                } else {
+                    const errorMessage = xhr.responseText || 'Unknown error';
+                    console.error('Upload failed:', errorMessage);
+                    showNotification(`Upload failed: ${errorMessage}`, 'error');
                 }
-                const errorCount = data.results.filter(r => r.status === 'error').length;
-                if (errorCount > 0) {
-                    showNotification(`${errorCount} document(s) failed to upload.`, 'error');
-                }
-            } else {
-                setUploadResults([{ status: 'error', error: 'Server error: ' + xhr.responseText.slice(0, 100) }]);
-                showNotification('Server error during upload. Please check console.', 'error');
+                resetUploadState();
             }
-        });
+        };
 
-        xhr.addEventListener('error', () => {
-            setUploading(false);
-            setUploadProgress(0);
-            setUploadResults([{ status: 'error', error: 'Network error during upload.' }]);
-            showNotification(`Network error during upload.`, 'error');
-        });
-
-        xhr.open('POST', `${API_BASE}/api/upload`);
+        xhr.open('POST', `${API_BASE}/api/upload`, true);
         xhr.send(formData);
+    };
+
+    const resetUploadState = () => {
+        setSelectedFiles([]);
+        setUploadProgress(0);
+        setIsUploading(false);
     };
 
     return (
@@ -102,60 +91,26 @@ function UploadSection({ API_BASE, showNotification, onUploadSuccess }) {
                 <Button
                     type="submit"
                     variant="contained"
-                    disabled={uploading}
-                    startIcon={uploading ? null : <CloudUploadIcon />}
+                    disabled={isUploading}
+                    startIcon={isUploading ? null : <CloudUploadIcon />}
                     sx={{
                         padding: '14px 28px',
-                        backgroundColor: uploading ? '#95a5a6' : '#2980b9',
+                        backgroundColor: isUploading ? '#95a5a6' : '#2980b9',
                         '&:hover': {
-                            backgroundColor: uploading ? '#95a5a6' : '#3498db',
+                            backgroundColor: isUploading ? '#95a5a6' : '#3498db',
                         },
                     }}
                 >
-                    {uploading ? 'Uploading...' : 'Upload Files'}
+                    {isUploading ? 'Uploading...' : 'Upload Files'}
                 </Button>
             </Box>
 
-            {uploading && uploadProgress > 0 && (
-                <Box sx={{ width: '100%', mt: 2 }}>
+            {isUploading && (
+                <Box sx={{ width: '100%', marginTop: 2 }}>
                     <LinearProgress variant="determinate" value={uploadProgress} sx={{ height: 10, borderRadius: 5 }} />
-                    <Typography variant="body2" color="text.secondary" sx={{ mt: 1, textAlign: 'center' }}>
-                        {uploadProgress}%
+                    <Typography variant="body2" color="textSecondary" sx={{ marginTop: 1, textAlign: 'center' }}>
+                        Uploading... {uploadProgress}%
                     </Typography>
-                </Box>
-            )}
-
-            {uploadResults.length > 0 && (
-                <Box sx={{ marginTop: 2.5, borderTop: '1px solid #eee', paddingTop: 2.5 }}>
-                    <Typography variant="h4" component="h3" sx={{ marginBottom: 2 }}>Upload Results:</Typography>
-                    <List sx={{ padding: 0 }}>
-                        {uploadResults.map((result, index) => (
-                            <ListItem
-                                key={index}
-                                sx={{
-                                    background: result.status === 'success' ? '#e6ffe6' : '#ffe6e6',
-                                    border: `1px solid ${result.status === 'success' ? '#27ae60' : '#c0392b'}`,
-                                    padding: '10px 15px',
-                                    marginBottom: 1.25,
-                                    borderRadius: 2,
-                                }}
-                            >
-                                <ListItemIcon sx={{ minWidth: 'unset', marginRight: 1 }}>
-                                    {result.status === 'success' ? (
-                                        <CheckCircleOutlineIcon sx={{ color: '#27ae60' }} />
-                                    ) : (
-                                        <ErrorOutlineIcon sx={{ color: '#c0392b' }} />
-                                    )}
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary={result.filename || 'N/A'}
-                                    secondary={result.error ? `(${result.error})` : null}
-                                    primaryTypographyProps={{ fontWeight: 600, color: '#34495e' }}
-                                    secondaryTypographyProps={{ color: '#c0392b' }}
-                                />
-                            </ListItem>
-                        ))}
-                    </List>
                 </Box>
             )}
         </Box>

@@ -1,12 +1,11 @@
-# doc-extract-parse-index
+## Introduction
 
-A simple web app for document extraction, parsing, and indexing. This project allows users to upload documents, extract their contents, parse relevant information, and index them for search and retrieval.
+`doc-extract-parse-index` is designed to streamline the workflow of extracting, parsing, and indexing documents via a web interface. It supports various document formats and provides an easy-to-use API and UI for managing document data.
 
 ## Table of Contents
 
 - [doc-extract-parse-index](#doc-extract-parse-index)
   - [Table of Contents](#table-of-contents)
-  - [Introduction](#introduction)
   - [Project Requirements](#project-requirements)
   - [Dependencies](#dependencies)
   - [Project Structure](#project-structure)
@@ -16,10 +15,10 @@ A simple web app for document extraction, parsing, and indexing. This project al
   - [Usage](#usage)
   - [License](#license)
   - [Contributing](#contributing)
+   - [Inspiration](#inspiration)
+   - [ToDo's](#todos)
+   - [Resources](#resources)
 
-## Introduction
-
-`doc-extract-parse-index` is designed to streamline the workflow of extracting, parsing, and indexing documents via a web interface. It supports various document formats and provides an easy-to-use API and UI for managing document data.
 
 ## Project Requirements
 
@@ -66,6 +65,19 @@ doc-extract-parse-index/
 
 2. **Backend Setup:**
 
+Create and updated the environment variables in `.env` file in the backend directory, you can use the `.env.example` as a template.
+
+From the project root directory, 
+
+```bash
+
+   cp .env.example .env
+   ```
+
+Then, update the `.env` file with your PostgreSQL database credentials and other LlamaCloud configurations.
+
+Then run **backend** service first, 
+
 Using `pip`:
    ```bash
    cd backend
@@ -86,7 +98,7 @@ Using `uv`,
     ```
   
 
-3. **Frontend Setup (if applicable):**
+3. **Frontend Setup (if needed):**
    ```bash
    cd frontend
    npm install
@@ -112,12 +124,39 @@ Using `uv`,
 
 - Upload documents via the web UI or API.
 - Extract and parse content automatically.
-- Search and retrieve indexed documents.
+- Search and retrieve indexed documents, **right now it stores the documents in a local postgres database instead of LlamaCloud to keep it simple**
 
 ## License
 
 MIT License
 
 ## Contributing
-Contributions are welcome! Please submit a pull request or open an issue for discussion.
+Contributions are welcome! Please submit a pull request or open an issue for discussion. Check the `CONTRIBUTING.md` file for more details and To Do items before start contributing.
 
+## Inspiration
+
+This video is a comprehensive tutorial on using LlamaExtract, a tool by LamaIndex, to automatically extract structured information from unstructured documents like PDFs and images. You'll learn how to define extraction schemas, use the graphical user interface and the Python SDK, manage extraction agents, process documents in batches, handle advanced configurations, and optimize extraction for real-world scenarios (like resumes or invoices). Thanks to the creator of LlamaCloud for providing such an informative resource and also a big thanks to [Alejandro AO](https://github.com/alejandro-ao) for the initial codebase and inspiration on his youtube video here: [![LlamaExtract Tutorial](https://img.youtube.com/vi/8b1k2j4g5hY/0.jpg)](https://www.youtube.com/watch?v=ISFmkrwJpcg)
+
+
+## ToDo's
+
+- [ ] Use LlamaCloud to index uploaded documents.
+- [ ] Implement advanced search features using LlamaCloud on indexed documents.
+- [ ] Add unit tests for backend services.
+- [ ] Improve frontend UI/UX.
+- [ ] Add more document format support (e.g., PDF, DOCX).
+- [ ] Implement user authentication and authorization.
+- [ ] Optimize performance for large document sets.
+- [ ] Add error handling and logging.
+- [ ] Create comprehensive documentation for API endpoints.
+- [ ] Set up CI/CD pipeline for automated testing and deployment.
+- [ ] Implement rate limiting and security measures for the API.
+- [ ] Add support for multiple languages in document processing.
+
+## Resources
+- [Flask Documentation](https://flask.palletsprojects.com/)
+- [React Documentation](https://reactjs.org/docs/getting-started.html)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+- [Docker Documentation](https://docs.docker.com/)
+- [Docker Compose Documentation](https://docs.docker.com/compose/)
+- [LlamaCloud Documentation](https://docs.cloud.llamaindex.ai/)

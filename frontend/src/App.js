@@ -183,24 +183,25 @@ function App() {
         boxSizing: 'border-box'
       }}>
         <Paper elevation={3} sx={{
-          width: 'auto', // Allow width to adjust to content
+          width: '100%', // Use 100% width, controlled by maxWidth
+          maxWidth: 1200, // Set a max-width for the content
           margin: '0 auto',
           background: theme.palette.background.paper,
           borderRadius: 16,
           boxShadow: '0 12px 40px rgba(0,0,0,0.12)',
-          paddingTop: theme.spacing(2),
+          paddingTop: theme.spacing(4),
           paddingBottom: theme.spacing(5),
-          paddingX: theme.spacing(3),
+          paddingX: theme.spacing(4), // Add more horizontal padding
           border: '1px solid #e2e8f0',
           display: 'flex',
           flexDirection: 'column',
-          gap: 0,
+          gap: theme.spacing(4), // Introduce consistent gap between sections
           overflowX: 'auto' // Enable horizontal scrolling if content overflows
         }}>
           <Typography variant="h1" component="div" sx={{
             textAlign: 'left',
             marginTop: theme.spacing(2),
-            marginBottom: theme.spacing(2),
+            marginBottom: theme.spacing(4), // Increase space below header
             lineHeight: 1,
             display: 'flex',
             alignItems: 'center'
