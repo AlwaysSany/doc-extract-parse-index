@@ -23,7 +23,7 @@ A simple web app for document extraction, parsing, and indexing. This project al
 
 ## Project Requirements
 
-- Python 3.10+
+- Python 3.13.3+
 - Node.js 14+ (if frontend is present)
 - pip (Python package manager)
 - Docker (for containerized setup)

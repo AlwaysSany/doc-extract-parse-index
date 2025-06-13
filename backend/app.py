@@ -219,7 +219,7 @@ def get_all_documents():
     return jsonify({'results': formatted_results})
 
 @app.route('/api/document/<resume_id>', methods=['GET'])
-def get_resume_detail(resume_id):
+def get_document_detail(resume_id):
     conn = get_db_connection()
     cursor = conn.cursor(cursor_factory=RealDictCursor)
     
@@ -248,6 +248,26 @@ def get_resume_detail(resume_id):
     conn.close()
     
     return jsonify(formatted_result)
+
+@app.route('/api/document/<resume_id>', methods=['DELETE'])
+def delete_document(resume_id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute("""
+        DELETE FROM documents WHERE id = %s
+    """, (resume_id,))
+    
+    if cursor.rowcount == 0:
+        cursor.close()
+        conn.close()
+        return jsonify({'error': 'Document not found'}), 404
+    
+    conn.commit()
+    cursor.close()
+    conn.close()
+    
+    return jsonify({'message': 'Document deleted successfully'})
 
 @app.route('/api/suggest', methods=['GET'])
 def get_suggestions():
