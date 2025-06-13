@@ -1,6 +1,8 @@
 ## Introduction
 
 `doc-extract-parse-index` is designed to streamline the workflow of extracting, parsing, and indexing documents via a web interface. It supports various document formats and provides an easy-to-use API and UI for managing document data.
+It uses LlamaCloud to parse and extract structured information from unstructured documents like PDFs and stores it to postgres database.
+The project is built with Flask for the backend and React for the frontend, providing a modern web application experience.
 
 ## Demo 
 
@@ -31,7 +33,6 @@ https://github.com/user-attachments/assets/5a5a01e9-9d25-4bca-a827-3e488f33112c
 - UV/PIP (Python package manager)
 - Docker (for containerized setup)
 - Docker Compose (for multi-service orchestration)
-- PostgreSQL (for database management)
 - LlamaCloud (for document indexing and search capabilities)
 
 ## Dependencies
