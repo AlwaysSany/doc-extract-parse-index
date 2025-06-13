@@ -6,7 +6,7 @@ The project is built with Flask for the backend and React for the frontend, prov
 
 ## Demo 
 
-<!-- https://github.com/user-attachments/assets/5a5a01e9-9d25-4bca-a827-3e488f33112c -->
+https://github.com/user-attachments/assets/e1df0d35-fb68-4812-9e1d-7868b38bd545
 
 ## Table of Contents
 
