@@ -58,23 +58,20 @@ doc-extract-parse-index/
 ## Setup Instructions
 
 ### Standalone Setup
-
 1. **Clone the repository:**
+
    ```bash
    git clone <repo-url>
    cd doc-extract-parse-index
    ```
 
-2. **Backend Setup:**
+2. **Backend Setup:** 
+ Create and updated the environment variables in `.env` file in the backend directory, you can use the `.env.example` as a template. From the project root directory
 
-Create and updated the environment variables in `.env` file in the backend directory, you can use the `.env.example` as a template.
-
-From the project root directory, 
-
-```bash
-
+   ```bash
    cp .env.example .env
-   ```
+      ```
+
 
 Then, update the `.env` file with your PostgreSQL database credentials and other LlamaCloud configurations.
 
@@ -99,9 +96,9 @@ Using `uv`,
     uv run app.py
     ```
   
-
 3. **Frontend Setup (if needed):**
-   ```bash
+
+```bash
    cd frontend
    npm install
    npm start
