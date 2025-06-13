@@ -139,7 +139,10 @@ Contributions are welcome! Please submit a pull request or open an issue for dis
 
 ## Inspiration
 
-This video is a comprehensive tutorial on using LlamaExtract, a tool by LamaIndex, to automatically extract structured information from unstructured documents like PDFs and images. You'll learn how to define extraction schemas, use the graphical user interface and the Python SDK, manage extraction agents, process documents in batches, handle advanced configurations, and optimize extraction for real-world scenarios (like resumes or invoices). Thanks to the creator of LlamaCloud for providing such an informative resource and also a big thanks to [Alejandro AO](https://github.com/alejandro-ao) for the initial codebase and inspiration on his youtube video here: [LlamaExtract Tutorial](https://www.youtube.com/watch?v=ISFmkrwJpcg)
+This project is a comprehensive tutorial on using LlamaExtract, a tool by LamaIndex, to automatically 
+extract structured information from unstructured documents like PDFs and images. Thanks to the creator of LlamaCloud for providing 
+such an informative resource and also a big thanks to [Alejandro AO](https://github.com/alejandro-ao) 
+for the initial codebase and inspiration on his youtube video here: [LlamaExtract Tutorial](https://www.youtube.com/watch?v=ISFmkrwJpcg)
 
 
 ## ToDo's
