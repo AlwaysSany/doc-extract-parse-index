@@ -70,14 +70,15 @@ doc-extract-parse-index/
 
    ```bash
    cp .env.example .env
-      ```
+   ```
 
 
-Then, update the `.env` file with your PostgreSQL database credentials and other LlamaCloud configurations.
+   Then, update the `.env` file with your PostgreSQL database credentials and other LlamaCloud configurations.
 
-Then run **backend** service first, 
+   Then run **backend** service first, 
 
-Using `pip`:
+   Using `pip`:
+
    ```bash
    cd backend
    python3 -m venv venv
@@ -86,19 +87,18 @@ Using `pip`:
    python app.py
    ```
 
-Using `uv`,
+   Using `uv`:
 
-    ```bash
-    cd backend
-    uv venv --python 3.13.3 venv
-    source venv/bin/activate 
-    uv sync
-    uv run app.py
-    ```
-  
+   ```bash
+   cd backend
+   uv venv --python 3.13.3 venv
+   source venv/bin/activate 
+   uv sync
+   uv run app.py
+   ```
 3. **Frontend Setup (if needed):**
 
-```bash
+   ```bash
    cd frontend
    npm install
    npm start
@@ -134,7 +134,7 @@ Contributions are welcome! Please submit a pull request or open an issue for dis
 
 ## Inspiration
 
-This video is a comprehensive tutorial on using LlamaExtract, a tool by LamaIndex, to automatically extract structured information from unstructured documents like PDFs and images. You'll learn how to define extraction schemas, use the graphical user interface and the Python SDK, manage extraction agents, process documents in batches, handle advanced configurations, and optimize extraction for real-world scenarios (like resumes or invoices). Thanks to the creator of LlamaCloud for providing such an informative resource and also a big thanks to [Alejandro AO](https://github.com/alejandro-ao) for the initial codebase and inspiration on his youtube video here: [![LlamaExtract Tutorial](https://img.youtube.com/vi/8b1k2j4g5hY/0.jpg)](https://www.youtube.com/watch?v=ISFmkrwJpcg)
+This video is a comprehensive tutorial on using LlamaExtract, a tool by LamaIndex, to automatically extract structured information from unstructured documents like PDFs and images. You'll learn how to define extraction schemas, use the graphical user interface and the Python SDK, manage extraction agents, process documents in batches, handle advanced configurations, and optimize extraction for real-world scenarios (like resumes or invoices). Thanks to the creator of LlamaCloud for providing such an informative resource and also a big thanks to [Alejandro AO](https://github.com/alejandro-ao) for the initial codebase and inspiration on his youtube video here: [LlamaExtract Tutorial](https://www.youtube.com/watch?v=ISFmkrwJpcg)
 
 
 ## ToDo's
